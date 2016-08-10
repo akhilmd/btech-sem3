@@ -1,0 +1,4 @@
+add help to pycla 
+add return type and argument type help.
+Also, provide datatype returning functionality.
+Set a default value parameter so that client side code is much reduced if the required option is not found

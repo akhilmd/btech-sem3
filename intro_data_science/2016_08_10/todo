@@ -1,0 +1,6 @@
+boxplot for sw,sl,pw,pl data from iris dataseet in one graph
+scatter plot with different colours for each flower for sw vs sl and pw vs pl
+
+extra:
+boxplot for box.csv
+scatter plots for scatter1.csv and scatter2.csv
