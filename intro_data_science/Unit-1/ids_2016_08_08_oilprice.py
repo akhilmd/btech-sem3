@@ -15,7 +15,6 @@ def error(msg):
 		print("-i <file-name>\t: Input File (.csv).")
 		print("-ig <num>\t: Ignore first num rows of data.")
 		print("-o <file-name>\t: Output File (.png OR .pdf)")
-		print("-bw <num>\t: Width of bar(float). The distance between bars is 0.1.")
 
 #READ CSV FILE
 inFile = pycla.get_arg("i")
@@ -32,12 +31,6 @@ if ig==None:
 else:
 	ig = int(ig)
 data_rows = list(data_rows)[ig:]
-
-barWidth = pycla.get_arg("bw")
-if barWidth == None:
-	barWidth = 0.8
-else:
-	barWidth = float(barWidth)
 
 dates = []
 prices = []
