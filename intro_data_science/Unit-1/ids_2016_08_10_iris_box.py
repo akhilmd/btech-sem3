@@ -32,8 +32,6 @@ else:
 	ig = int(ig)
 data_rows = list(data_rows)[ig:]
 
-labels = data_rows[0]
-data_rows = data_rows[1:]
 spe_dict = {'virginica':0, 'setosa':1, 'versicolor':2};
 para_dict = {0:'Sepal Length', 1:'Sepal Width', 2:'Petal Length', 3:'Petal Width'}
 
@@ -44,27 +42,14 @@ pw_data = [[], [], []]
 spe_data = [[], [], []]
 
 for sl,sw,pl,pw,spe in data_rows:
-	
 	sl_data[spe_dict[spe]].append(float(sl))
 	sw_data[spe_dict[spe]].append(float(sw))
 	pl_data[spe_dict[spe]].append(float(pl))
 	pw_data[spe_dict[spe]].append(float(pw))
 	spe_data.append(spe)
 
-#sl_data.sort()
-#sw_data.sort()
-#pl_data.sort()
-#pw_data.sort()
-#spe_data.sort()
-
 full_data = [sl_data, sw_data, pl_data, pw_data]
 print(full_data)
-
-cw = pycla.get_arg("cw")
-if cw == None:
-	cw=1
-else:
-	cw = float(cw)
 
 # Four axes, returned as a 2-d array
 f, axarr = plt.subplots(3, 4)
@@ -72,8 +57,8 @@ f, axarr = plt.subplots(3, 4)
 for i in range(3):
 	for j in range(4):
 		axarr[i, j].boxplot(full_data[j][i])
-		axarr[i, j].set_title(para_dict[j] + ' of ' + spe_dict.keys()[spe_dict.values().index(i)])
-# plt.hist(sl_data)
+		axarr[i, j].set_title(para_dict[j] + ' of ' + list(spe_dict.keys())[list(spe_dict.values()).index(i)], {'fontsize': 9})
+		axarr[i, j].tick_params(labelsize=8)
 
 outFile = pycla.get_arg("o")
 if outFile == None:
