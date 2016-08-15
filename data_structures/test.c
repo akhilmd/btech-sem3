@@ -1,17 +1,21 @@
 #include "include/SinglyLinkedList.h"
 #include "include/Recursion.h"
+#include "include/PointersArrays.h"
+
 #include <string.h>
 
 #define REC 'r'
 #define SLL 's'
+#define PA 'p'
 
 int check_for_help(char**, int);
 void run_all_tests();
 void run_tests(char**, int);
 void print_help();
 
-void test_singly_ll();
 void test_rec();
+void test_singly_ll();
+void test_pointers_arrays();
 
 int main(int argl, char** argv)
 {
@@ -46,6 +50,8 @@ void run_all_tests()
     test_rec();
     printf("\n\n");
     test_singly_ll();
+    printf("\n\n");
+    test_pointers_arrays();
 }
 
 void run_tests(char** args, int no_of_args)
@@ -57,6 +63,8 @@ void run_tests(char** args, int no_of_args)
             test_rec();
         else if (args[i][0]==SLL)
             test_singly_ll();
+        else if (args[i][0]==PA)
+            test_pointers_arrays();
 
         if (i!=no_of_args-1)
             printf("\n\n");
@@ -140,4 +148,10 @@ void test_rec()
 
     int big_num = 203041;
     printf("sum of digits of %d = %d\n", big_num, sumOfDigits(big_num));
+}
+
+void test_pointers_arrays()
+{
+    printf("\tTesting Pointers and Arrays...\n\n");
+    test_pa();
 }
