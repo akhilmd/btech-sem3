@@ -168,6 +168,7 @@ int delete_at(Node** ptr_first, int pos)
         else
             prev_node->next = curr_node->next;
         free(curr_node);
+        return 0;
     }
 
     return 1;
