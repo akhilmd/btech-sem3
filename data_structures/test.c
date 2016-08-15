@@ -1,11 +1,60 @@
 #include "include/SinglyLinkedList.h"
+#include <string.h>
+
+int check_for_help(char**, int);
+void run_all_tests();
+void run_tests(char**, int);
+void print_help();
 
 void test_singly_ll();
+void test_fact();
 
-int main()
+int main(int argl, char** argv)
+{
+    if (check_for_help(argv+1,argl-1))
+    {
+        if (argl == 1)
+            run_all_tests();
+        else
+            run_tests(argv+1,argl-1);
+    }
+    return 0;
+}
+
+int check_for_help(char** args, int no_of_args)
+{
+    if (no_of_args>0)
+    {
+        int i = 0;
+        char* tmp = "--help";
+        for (i=0;i<no_of_args;++i)
+            if (strcmp(args[i],tmp)==0)
+            {
+                print_help();
+                return 0;
+            }
+    }
+    return 1;
+}
+
+void run_all_tests()
 {
     test_singly_ll();
-    return 0;
+    test_fact();
+}
+
+void run_tests(char** args, int no_of_args)
+{
+    int i = 0;
+    for (i=0;i<no_of_args;++i)
+    {
+        printf("%c\n",args[i][0]);
+    }
+}
+
+void print_help()
+{
+    printf("USAGE:\n\n");
 }
 
 void test_singly_ll()
@@ -55,4 +104,9 @@ void test_singly_ll()
     printf("\nConcatenating list1 and list2.\n");
     Node* list12 = concatenate_lists(list1,list2); 
     display_list("list12: ", list12);
+}
+
+void test_fact()
+{
+    printf("TBD\n");
 }
