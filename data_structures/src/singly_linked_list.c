@@ -14,14 +14,14 @@ Node* create_from_array(TYPE* ar, int n)
     return first_node;
 }
 
-char insert_end(Node** ptr_first, TYPE in_val)
+int insert_end(Node** ptr_first, TYPE in_val)
 {
     Node* new_node = (Node*) malloc(sizeof(Node));
 
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return 0;
+        return 1;
     }
 
     new_node->value = in_val;
@@ -30,7 +30,7 @@ char insert_end(Node** ptr_first, TYPE in_val)
     if ((*ptr_first) == NULL)
     {
         (*ptr_first) = new_node;
-        return 1;
+        return 0;
     }
     else
     {
@@ -40,29 +40,29 @@ char insert_end(Node** ptr_first, TYPE in_val)
             if (i_node->next == NULL)
             {
                 i_node->next = new_node;
-                return 1;
+                return 0;
             }
     }
 }
 
-char insert_start(Node** ptr_first, TYPE in_val)
+int insert_start(Node** ptr_first, TYPE in_val)
 {
     Node* new_node = (Node*) malloc(sizeof(Node));
 
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return 0;
+        return 1;
     }
 
     new_node->value = in_val;
     new_node->next = (*ptr_first);
     (*ptr_first) = new_node;
 
-    return 1;
+    return 0;
 }
 
-char insert_at(Node** ptr_first, TYPE in_val, int pos)
+int insert_at(Node** ptr_first, TYPE in_val, int pos)
 {
     if (pos == 1)
         return insert_start(ptr_first, in_val);
@@ -73,7 +73,7 @@ char insert_at(Node** ptr_first, TYPE in_val, int pos)
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return 0;
+        return 1;
     }
 
     new_node->value = in_val;
@@ -86,24 +86,32 @@ char insert_at(Node** ptr_first, TYPE in_val, int pos)
         {
             new_node->next = i_node->next;
             i_node->next = new_node;
-            return 1;
+            return 0;
         }
     }
 
     printf("Invalid Position!\n");
+    return 1;
+}
+
+int delete_start(Node** ptr_first)
+{
+    Node *to_be_freed = *ptr_first;
+
+    (*ptr_first) = (*ptr_first)->next;
+    free(to_be_freed);
+
     return 0;
 }
 
-char delete_end(Node** ptr_first)
+int delete_end(Node** ptr_first)
 {
     if ((*ptr_first) == NULL)
-        return 1;
+        return 0;
 
     if ((*ptr_first)->next == NULL)
     {
-        (*ptr_first) = NULL;
-        free(*ptr_first);
-        return 1;
+        return delete_start(ptr_first);
     }
 
     Node* i_node = NULL;
@@ -111,25 +119,15 @@ char delete_end(Node** ptr_first)
     for (i_node = (*ptr_first); i_node != NULL; i_node = i_node->next)
         if (i_node->next->next == NULL)
         {
-            i_node->next = NULL;
             free(i_node->next);
-            return 1;
+            i_node->next = NULL;
+            return 0;
         }
-
-    return 0;
-}
-
-char delete_start(Node** ptr_first)
-{
-    Node *to_be_freed = *ptr_first;
-
-    (*ptr_first) = (*ptr_first)->next;
-    free(to_be_freed);
 
     return 1;
 }
 
-char delete_at(Node** ptr_first, int pos)
+int delete_at(Node** ptr_first, int pos)
 {
     if (pos == 1)
         return delete_start(ptr_first);
@@ -140,10 +138,13 @@ char delete_at(Node** ptr_first, int pos)
     {
         if (pos == 1)
         {
-            free(i_node->next);
+            Node *to_be_freed = i_node->next;
             i_node->next = i_node->next->next;
+            free(to_be_freed);
+            return 0;
         }
     }
+    return 1;
 }
 
 Node* reverse_list(Node* prev, Node* curr)
@@ -177,10 +178,10 @@ Node* concatenate_lists(Node* list1, Node* list2)
         }
     }
 
-    return 0;
+    return NULL;
 }
 
-char display_list(char* msg, Node* curr_node)
+int display_list(char* msg, Node* curr_node)
 {
     printf("%s", msg);
     for (; curr_node != NULL; curr_node = curr_node->next)
@@ -190,5 +191,5 @@ char display_list(char* msg, Node* curr_node)
     }
     printf("NULL\n");
 
-    return 1;
+    return 0;
 }
