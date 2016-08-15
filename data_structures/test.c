@@ -59,11 +59,11 @@ void run_tests(char** args, int no_of_args)
     int i = 0;
     for (i=0;i<no_of_args;++i)
     {
-        if (args[i][0]==REC)
+        if (args[i][1]==REC)
             test_rec();
-        else if (args[i][0]==SLL)
+        else if (args[i][1]==SLL)
             test_singly_ll();
-        else if (args[i][0]==PA)
+        else if (args[i][1]==PA)
             test_pointers_arrays();
 
         if (i!=no_of_args-1)
@@ -73,7 +73,11 @@ void run_tests(char** args, int no_of_args)
 
 void print_help()
 {
-    printf("USAGE:\nIf no arguments are provided, then all tests will execute.\n\n");
+    printf("USAGE: $ ./test <options>\nIf no options are provided, then all tests will execute.\n\n");
+    printf("OPTIONS:\n");
+    printf("-%c  :  Test Recursion Algorithms.\n", REC);
+    printf("-%c  :  Test Singly Linked List Implementation.\n", SLL);
+    printf("-%c  :  Test Pointers and Arrays.\n", PA);
 }
 
 void test_singly_ll()
