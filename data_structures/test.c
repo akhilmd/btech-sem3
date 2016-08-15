@@ -1,15 +1,89 @@
 #include "include/SinglyLinkedList.h"
+#include "include/Recursion.h"
+#include "include/PointersArrays.h"
 
+#include <string.h>
+
+#define REC 'r'
+#define SLL 's'
+#define PA 'p'
+
+int check_for_help(char**, int);
+void run_all_tests();
+void run_tests(char**, int);
+void print_help();
+
+void test_rec();
 void test_singly_ll();
+void test_pointers_arrays();
 
-int main()
+int main(int argl, char** argv)
 {
-    test_singly_ll();
+    if (check_for_help(argv+1,argl-1))
+    {
+        if (argl == 1)
+            run_all_tests();
+        else
+            run_tests(argv+1,argl-1);
+    }
     return 0;
+}
+
+int check_for_help(char** args, int no_of_args)
+{
+    if (no_of_args>0)
+    {
+        int i = 0;
+        char* tmp = "--help";
+        for (i=0;i<no_of_args;++i)
+            if (strcmp(args[i],tmp)==0)
+            {
+                print_help();
+                return 0;
+            }
+    }
+    return 1;
+}
+
+void run_all_tests()
+{
+    test_rec();
+    printf("\n\n");
+    test_singly_ll();
+    printf("\n\n");
+    test_pointers_arrays();
+}
+
+void run_tests(char** args, int no_of_args)
+{
+    int i = 0;
+    for (i=0;i<no_of_args;++i)
+    {
+        if (args[i][1]==REC)
+            test_rec();
+        else if (args[i][1]==SLL)
+            test_singly_ll();
+        else if (args[i][1]==PA)
+            test_pointers_arrays();
+
+        if (i!=no_of_args-1)
+            printf("\n\n");
+    }
+}
+
+void print_help()
+{
+    printf("USAGE: $ ./test <options>\nIf no options are provided, then all tests will execute.\n\n");
+    printf("OPTIONS:\n");
+    printf("-%c  :  Test Recursion Algorithms.\n", REC);
+    printf("-%c  :  Test Singly Linked List Implementation.\n", SLL);
+    printf("-%c  :  Test Pointers and Arrays.\n", PA);
 }
 
 void test_singly_ll()
 {
+    printf("\tTesting Singly Linked List Implementation...\n\n");
+
     TYPE values1[] = {1,2,4,5};
     TYPE values2[] = {101,100,99,99,98,97,96,95};
 
@@ -54,5 +128,34 @@ void test_singly_ll()
 
     printf("\nConcatenating list1 and list2.\n");
     Node* list12 = concatenate_lists(list1,list2); 
-    display_list("list12: ", list12);
+    display_list("list12: ", list12); 
+}
+
+void test_rec()
+{
+    printf("\tTesting Recursion Algorithms...\n\n");
+
+    long num = 20;
+    printf("factorial of %ld = %ld\n", num, fact(num));
+
+    int len = 10000;
+    int i = 0;
+
+    int numbers[len];
+
+    for (i=0;i<len;++i)
+        numbers[i]=i+1;
+
+    printf("sum of array = %d\n", sumArray(numbers,len));
+    printf("largest in array = %d\n", largest(numbers,len));
+    printf("largest in array = %d\n", largest2(numbers,0,len-1));
+
+    int big_num = 203041;
+    printf("sum of digits of %d = %d\n", big_num, sumOfDigits(big_num));
+}
+
+void test_pointers_arrays()
+{
+    printf("\tTesting Pointers and Arrays...\n\n");
+    test_pa();
 }
