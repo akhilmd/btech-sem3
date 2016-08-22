@@ -12,12 +12,13 @@ typedef struct Node
 } Node;
 
 Node* create_from_array(TYPE*, int);
-int insert_end(Node**, TYPE);
-int insert_start(Node**, TYPE);
-int insert_at(Node**, TYPE, int);
-int delete_end(Node**);
-int delete_start(Node**);
-int delete_at(Node**, int);
+Node* insert_end(Node*, TYPE);
+Node* insert_start(Node*, TYPE);
+Node* insert_at(Node*, TYPE, int);
+Node* delete_element(Node*, TYPE);
+Node* delete_end(Node*);
+Node* delete_start(Node*);
+Node* delete_at(Node*, int);
 Node* reverse_list(Node*, Node*);
 Node* concatenate_lists(Node*, Node*);
 int display_list(char*, Node*);

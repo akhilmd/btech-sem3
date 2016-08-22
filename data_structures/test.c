@@ -95,31 +95,36 @@ void test_singly_ll()
 
     TYPE v1 = 0;
     printf("\nInserting %d to start of list1.\n", v1);
-    insert_start(&list1, v1);
+    list1 = insert_start(list1, v1);
     display_list("list1: ", list1);
 
     TYPE v2 = 6;
     printf("\nInserting %d to end of list1.\n", v2);
-    insert_end(&list1, v2);
+    list1 = insert_end(list1, v2);
     display_list("list1: ", list1);
 
     TYPE v3 = 3;
     int pos1 = 4;
     printf("\nInserting %d in position %d of list1.\n", v3, pos1);
-    insert_at(&list1, v3, pos1);
+    list1 = insert_at(list1, v3, pos1);
     display_list("list1: ", list1);
+	
+    TYPE v4 = 98;
+    printf("\nDeleting element %d of list2.\n", v4);
+    list2 = delete_element(list2, v4);
+    display_list("list2: ", list2);
 
     printf("\nDeleting start of list2.\n");
-    delete_start(&list2);
+    list2 = delete_start(list2);
     display_list("list2: ", list2);
 
     printf("\nDeleting end of list2.\n");
-    delete_end(&list2);
+    list2 = delete_end(list2);
     display_list("list2: ", list2);
 
     int pos2 = 2;
     printf("\nDeleting node in position %d of list2.\n", pos2);
-    delete_at(&list2, pos2);
+    list2 = delete_at(list2, pos2);
     display_list("list2: ", list2);
 
     printf("\nReversing list2.\n");
