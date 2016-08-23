@@ -106,7 +106,8 @@ Node* sll_insert_at(Node* ptr_first, SLL_ELEM_TYPE in_val, int pos)
     }
 }
 
-Node* sll_delete_element(Node* ptr_first, SLL_ELEM_TYPE element){
+Node* sll_delete_element(Node* ptr_first, SLL_ELEM_TYPE element)
+{
     Node *head, *prev;
 	head = ptr_first;
 	prev = NULL;
