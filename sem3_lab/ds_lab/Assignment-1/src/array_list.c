@@ -12,27 +12,26 @@ ArrayList* al_init(int mx_len)
     return new_list;
 }
 
-ArrayList* al_insert_end(ArrayList* list, TYPE new_val)
+void al_insert_end(ArrayList* list, AL_ELEM_TYPE new_val)
 {
     if (list->length < list->max_length)
     {
         // Increase data array size by one and insert new element
         ++(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
         list->data[list->length - 1] = new_val;
     }
     else
         printf("al_insert_end: List is full.\n");
-    return list;
 }
 
-ArrayList* al_insert_front(ArrayList* list, TYPE new_val)
+void al_insert_front(ArrayList* list, AL_ELEM_TYPE new_val)
 {
     if (list->length < list->max_length)
     {
         // Increase data array size by one and insert new element
         ++(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
 
         int i = 0;
 
@@ -44,23 +43,22 @@ ArrayList* al_insert_front(ArrayList* list, TYPE new_val)
     }
     else
         printf("al_insert_front: List is full.\n");
-    return list;
 }
 
-ArrayList* al_insert_at(ArrayList* list, TYPE new_val, int position)
+void al_insert_at(ArrayList* list, AL_ELEM_TYPE new_val, int position)
 {
     // position is 1-based
     if (position < 1 || position > list->length)
     {
         printf("al_insert_at: Invalid position.\n");
-        return list;
+        return;
     }
 
     if (list->length < list->max_length)
     {
         // Increase data array size by one and insert new element
         ++(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
 
         int i = 0;
 
@@ -71,10 +69,9 @@ ArrayList* al_insert_at(ArrayList* list, TYPE new_val, int position)
     }
     else
         printf("al_insert_at: List is full.\n");
-    return list;
 }
 
-ArrayList* al_delete_front(ArrayList* list)
+void al_delete_front(ArrayList* list)
 {
     if (list->length > 0)
     {
@@ -86,36 +83,32 @@ ArrayList* al_delete_front(ArrayList* list)
 
         // Decrease size of data array to remove last element
         --(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
 
     }
     else
         printf("al_delete_front: List is empty.\n");
-
-    return list;
 }
 
-ArrayList* al_delete_end(ArrayList* list)
+void al_delete_end(ArrayList* list)
 {
     if (list->length > 0)
     {
         // Decrease size of data array to remove last element
         --(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
     }
     else
         printf("al_delete_end: List is empty.\n");
-
-    return list;
 }
 
-ArrayList* al_delete_at(ArrayList* list, int position)
+void al_delete_at(ArrayList* list, int position)
 {
     // position is 1-based
     if (position < 1 || position > list->length)
     {
         printf("al_delete_at: Invalid position.\n");
-        return list;
+        return;
     }
 
     if (list->length > 0)
@@ -128,15 +121,13 @@ ArrayList* al_delete_at(ArrayList* list, int position)
 
         // Decrease size of data array to remove last element
         --(list->length);
-        list->data = (TYPE*) realloc(list->data, list->length * sizeof(TYPE));
+        list->data = (AL_ELEM_TYPE*) realloc(list->data, list->length * sizeof(AL_ELEM_TYPE));
     }
     else
         printf("al_delete_at: List is empty.\n");
-
-    return list;
 }
 
-ArrayList* al_delete_with_val(ArrayList* list, TYPE val)
+void al_delete_with_val(ArrayList* list, AL_ELEM_TYPE val)
 {
     if (list->length > 0)
     {
@@ -151,15 +142,13 @@ ArrayList* al_delete_with_val(ArrayList* list, TYPE val)
             printf("al_delete_with_val: Element with value %d not found.\n",
                     val);
         else
-            list = al_delete_at(list, i + 1);
+            al_delete_at(list, i + 1);
     }
     else
         printf("al_delete_with_val: List is empty.\n");
-
-    return list;
 }
 
-ArrayList* al_reverse(ArrayList* list)
+void al_reverse(ArrayList* list)
 {
     int i = 0, tmp = 0;
 
@@ -170,7 +159,6 @@ ArrayList* al_reverse(ArrayList* list)
         list->data[i] = list->data[list->length - 1 - i];
         list->data[list->length - 1 - i] = tmp;
     }
-    return list;
 }
 
 void al_display(ArrayList* list, char* msg)
