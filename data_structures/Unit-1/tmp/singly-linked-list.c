@@ -1,18 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <""../include/SinglyLinkedList.h"">
 
-#define TYPE_FORMAT "%d"
-
-typedef int TYPE;
+typedef int SLL_ELEM_TYPE;
 
 typedef struct Node
 {
-	TYPE value;
+	SLL_ELEM_TYPE value;
 	struct Node* next;
 } Node;
 
-char insert_end(Node**, TYPE);
-char insert_start(Node**, TYPE);
+char insert_end(Node**, SLL_ELEM_TYPE);
+char insert_start(Node**, SLL_ELEM_TYPE);
 Node* reverse_list(Node*, Node*, Node*);
 char display_list(char*, Node*);
 
@@ -34,7 +31,7 @@ int main()
 	return 0;
 }
 
-char insert_end(Node** ptr_first, TYPE in_val)
+char insert_end(Node** ptr_first, SLL_ELEM_TYPE in_val)
 {
 	Node* new_node = (Node*) malloc(sizeof(Node));
 
@@ -65,7 +62,7 @@ char insert_end(Node** ptr_first, TYPE in_val)
 	}
 }
 
-char insert_start(Node** ptr_first, TYPE in_val)
+char insert_start(Node** ptr_first, SLL_ELEM_TYPE in_val)
 {
 	Node* new_node = (Node*) malloc(sizeof(Node));
 
@@ -97,7 +94,7 @@ char display_list(char* msg, Node* curr_node)
 	printf("%s",msg);
 	for (;curr_node != NULL;curr_node = curr_node->next)
 	{
-		printf(TYPE_FORMAT,curr_node->value);
+		printf(SLL_ELEM_TYPE_FORMAT,curr_node->value);
 		printf("->");
 	}
 	printf("NULL\n");
