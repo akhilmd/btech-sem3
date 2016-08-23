@@ -1,18 +1,18 @@
 #include "../include/SinglyLinkedList.h"
 
-Node* create_from_array(TYPE* ar, int n)
+Node* sll_create_from_array(SLL_ELEM_TYPE* ar, int n)
 {
     Node* first_node = NULL;
 
     int i = 0;
 
     for (i = 0; i < n; ++i)
-        first_node = insert_end(first_node, ar[i]);
+        first_node = sll_insert_end(first_node, ar[i]);
 
     return first_node;
 }
 
-Node* insert_end(Node* ptr_first, TYPE in_val)
+Node* sll_insert_end(Node* ptr_first, SLL_ELEM_TYPE in_val)
 {
     Node* new_node = (Node*) malloc(sizeof(Node));
 
@@ -45,7 +45,7 @@ Node* insert_end(Node* ptr_first, TYPE in_val)
     return ptr_first;
 }
 
-Node* insert_start(Node* ptr_first, TYPE in_val)
+Node* sll_insert_start(Node* ptr_first, SLL_ELEM_TYPE in_val)
 {
     Node* new_node = (Node*) malloc(sizeof(Node));
 
@@ -65,7 +65,7 @@ Node* insert_start(Node* ptr_first, TYPE in_val)
     return ptr_first;
 }
 
-Node* insert_at(Node* ptr_first, TYPE in_val, int pos)
+Node* sll_insert_at(Node* ptr_first, SLL_ELEM_TYPE in_val, int pos)
 {
     Node* new_node = (Node*) malloc(sizeof(Node));
     Node* prev_node = NULL;
@@ -106,7 +106,7 @@ Node* insert_at(Node* ptr_first, TYPE in_val, int pos)
     }
 }
 
-Node* delete_element(Node* ptr_first, TYPE element){
+Node* sll_delete_element(Node* ptr_first, SLL_ELEM_TYPE element){
     Node *head, *prev;
 	head = ptr_first;
 	prev = NULL;
@@ -130,7 +130,7 @@ Node* delete_element(Node* ptr_first, TYPE element){
 	return ptr_first;
 }
 
-Node* delete_start(Node* ptr_first)
+Node* sll_delete_start(Node* ptr_first)
 {
     Node *to_be_freed = ptr_first;
 
@@ -142,7 +142,7 @@ Node* delete_start(Node* ptr_first)
     return ptr_first;
 }
 
-Node* delete_end(Node* ptr_first)
+Node* sll_delete_end(Node* ptr_first)
 {
     // Do nothing if list is empty
     if ((ptr_first) == NULL)
@@ -164,7 +164,7 @@ Node* delete_end(Node* ptr_first)
     return ptr_first;
 }
 
-Node* delete_at(Node* ptr_first, int pos)
+Node* sll_delete_at(Node* ptr_first, int pos)
 {
     // Do nothing if list is empty
     if ((ptr_first) == NULL)
@@ -198,7 +198,7 @@ Node* delete_at(Node* ptr_first, int pos)
     return ptr_first;
 }
 
-Node* reverse_list(Node* prev, Node* curr)
+Node* sll_reverse_list(Node* prev, Node* curr)
 {
     Node* next = NULL;
 
@@ -214,10 +214,10 @@ Node* reverse_list(Node* prev, Node* curr)
     if (next == NULL)
         return curr;
 
-    return reverse_list(curr, next);
+    return sll_reverse_list(curr, next);
 }
 
-Node* concatenate_lists(Node* list1, Node* list2)
+Node* sll_concatenate_lists(Node* list1, Node* list2)
 {
     Node* curr_node = NULL;
 
@@ -231,12 +231,12 @@ Node* concatenate_lists(Node* list1, Node* list2)
     return NULL;
 }
 
-int display_list(char* msg, Node* curr_node)
+int sll_display_list(char* msg, Node* curr_node)
 {
     printf("%s", msg);
     for (; curr_node != NULL; curr_node = curr_node->next)
     {
-        printf(TYPE_FORMAT, curr_node->value);
+        printf(SLL_ELEM_TYPE_FORMAT, curr_node->value);
         printf("->");
     }
     printf("NULL\n");
