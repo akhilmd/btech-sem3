@@ -17,7 +17,8 @@ SLLNode* sll_insert_end(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
     SLLNode* new_node = (SLLNode*) malloc(sizeof(SLLNode));
 
     // If memory could not be allocated
-    if (new_node == NULL){
+    if (new_node == NULL)
+    {
         printf("ERROR!\n");
         return ptr_first;
     }
@@ -26,7 +27,8 @@ SLLNode* sll_insert_end(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
     new_node->next = NULL;
 
     // If list is empty
-    if ((ptr_first) == NULL){
+    if ((ptr_first) == NULL)
+    {
         (ptr_first) = new_node;
         return ptr_first;
     }
@@ -112,14 +114,16 @@ SLLNode* sll_delete_element(SLLNode* ptr_first, SLL_ELEM_TYPE element)
     head = ptr_first;
     prev = NULL;
 
-    while ((head != NULL) && (head->value != element)) {
+    while ((head != NULL) && (head->value != element))
+    {
         prev = head;
         head = head->next;
     }
 
     if (head == NULL)
         printf("Node Not Found\n");
-    else {
+    else
+    {
 
         if (prev == NULL)
             ptr_first = head->next;
@@ -236,9 +240,7 @@ int sll_display_list(char* msg, SLLNode* curr_node)
 {
     printf("%s", msg);
     for (; curr_node != NULL; curr_node = curr_node->next)
-    {
-        printf(SLL_ELEM_TYPE_FORMAT"->", curr_node->value);
-    }
+        printf(SLL_ELEM_TYPE_FORMAT "->", curr_node->value);
     printf("NULL\n");
 
     return 0;

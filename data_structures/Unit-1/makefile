@@ -1,17 +1,27 @@
-test:	obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o obj/doubly_linked_list.o
-	gcc -o test obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o obj/doubly_linked_list.o
+IDIR =include
+CC=gcc
 
-obj/test.o:	test.c
-	gcc -o obj/test.o -c test.c
+ODIR=obj
+SRCDIR=src
 
-obj/singly_linked_list.o:	src/singly_linked_list.c
-	gcc -o obj/singly_linked_list.o -c src/singly_linked_list.c
+test:	$(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o
+	gcc -o test $(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o
 
-obj/recursion.o:	src/recursion.c
-	gcc -o obj/recursion.o -c src/recursion.c
+$(ODIR)/test.o:	test.c
+	gcc -o $(ODIR)/test.o -c test.c
 
-obj/pointers_arrays.o:	src/pointers_arrays.c
-	gcc -o obj/pointers_arrays.o -c src/pointers_arrays.c
+$(ODIR)/singly_linked_list.o:	$(SRCDIR)/singly_linked_list.c $(IDIR)/SinglyLinkedList.h
+	gcc -o $(ODIR)/singly_linked_list.o -c $(SRCDIR)/singly_linked_list.c
 
-obj/doubly_linked_list.o:	src/doubly_linked_list.c
-	gcc -o obj/doubly_linked_list.o -c src/doubly_linked_list.c
+$(ODIR)/recursion.o:	$(SRCDIR)/recursion.c $(IDIR)/Recursion.h
+	gcc -o $(ODIR)/recursion.o -c $(SRCDIR)/recursion.c
+
+$(ODIR)/pointers_arrays.o:	$(SRCDIR)/pointers_arrays.c $(IDIR)/PointersArrays.h
+	gcc -o $(ODIR)/pointers_arrays.o -c $(SRCDIR)/pointers_arrays.c
+
+$(ODIR)/doubly_linked_list.o:	$(SRCDIR)/doubly_linked_list.c $(IDIR)/DoublyLinkedList.h
+	gcc -o $(ODIR)/doubly_linked_list.o -c $(SRCDIR)/doubly_linked_list.c
+
+clean:
+	rm -f $(ODIR)/*.o
+	rm test
