@@ -12,7 +12,7 @@ SLLNode* sll_create_from_array(SLL_ELEM_TYPE* ar, int n)
     return first_node;
 }
 
-SLLNode* sll_insert_end(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
+SLLNode* sll_insert_end(SLLNode* first, SLL_ELEM_TYPE in_val)
 {
     SLLNode* new_node = (SLLNode*) malloc(sizeof(SLLNode));
 
@@ -20,22 +20,22 @@ SLLNode* sll_insert_end(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return ptr_first;
+        return first;
     }
 
     new_node->value = in_val;
     new_node->next = NULL;
 
     // If list is empty
-    if ((ptr_first) == NULL)
+    if (first == NULL)
     {
-        (ptr_first) = new_node;
-        return ptr_first;
+        first = new_node;
+        return first;
     }
 
     else
     {
-        SLLNode* curr_node = (ptr_first);
+        SLLNode* curr_node = first;
 
         // Traverse till the last Node
         for (; curr_node->next != NULL; curr_node = curr_node->next)
@@ -44,10 +44,10 @@ SLLNode* sll_insert_end(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
         curr_node->next = new_node;
     }
 
-    return ptr_first;
+    return first;
 }
 
-SLLNode* sll_insert_start(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
+SLLNode* sll_insert_start(SLLNode* first, SLL_ELEM_TYPE in_val)
 {
     SLLNode* new_node = (SLLNode*) malloc(sizeof(SLLNode));
 
@@ -55,19 +55,19 @@ SLLNode* sll_insert_start(SLLNode* ptr_first, SLL_ELEM_TYPE in_val)
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return ptr_first;
+        return first;
     }
 
     // new Node points to first Node
     new_node->value = in_val;
-    new_node->next = (ptr_first);
+    new_node->next = first;
     // new Node becomes new first Node
-    (ptr_first) = new_node;
+    first = new_node;
 
-    return ptr_first;
+    return first;
 }
 
-SLLNode* sll_insert_at(SLLNode* ptr_first, SLL_ELEM_TYPE in_val, int pos)
+SLLNode* sll_insert_at(SLLNode* first, SLL_ELEM_TYPE in_val, int pos)
 {
     SLLNode* new_node = (SLLNode*) malloc(sizeof(SLLNode));
     SLLNode* prev_node = NULL;
@@ -77,14 +77,14 @@ SLLNode* sll_insert_at(SLLNode* ptr_first, SLL_ELEM_TYPE in_val, int pos)
     if (new_node == NULL)
     {
         printf("ERROR!\n");
-        return ptr_first;
+        return first;
     }
 
     new_node->value = in_val;
     new_node->next = NULL;
 
     // Traverse till Node at position to insert in
-    for (curr_node = (ptr_first); curr_node != NULL && pos > 1; prev_node =
+    for (curr_node = first; curr_node != NULL && pos > 1; prev_node =
             curr_node, curr_node = curr_node->next, --pos)
         ;
 
@@ -92,7 +92,7 @@ SLLNode* sll_insert_at(SLLNode* ptr_first, SLL_ELEM_TYPE in_val, int pos)
     if (curr_node == NULL || pos < 1)
     {
         printf("Invalid Position!\n");
-        return ptr_first;
+        return first;
     }
     else
     {
@@ -100,18 +100,18 @@ SLLNode* sll_insert_at(SLLNode* ptr_first, SLL_ELEM_TYPE in_val, int pos)
 
         // If pos is 1
         if (prev_node == NULL)
-            (ptr_first) = new_node;
+            first = new_node;
         else
             prev_node->next = new_node;
 
-        return ptr_first;
+        return first;
     }
 }
 
-SLLNode* sll_delete_element(SLLNode* ptr_first, SLL_ELEM_TYPE element)
+SLLNode* sll_delete_element(SLLNode* first, SLL_ELEM_TYPE element)
 {
     SLLNode *head, *prev;
-    head = ptr_first;
+    head = first;
     prev = NULL;
 
     while ((head != NULL) && (head->value != element))
@@ -126,38 +126,38 @@ SLLNode* sll_delete_element(SLLNode* ptr_first, SLL_ELEM_TYPE element)
     {
 
         if (prev == NULL)
-            ptr_first = head->next;
+            first = head->next;
         else
             prev->next = head->next;
         free(head);
     }
 
-    return ptr_first;
+    return first;
 }
 
-SLLNode* sll_delete_start(SLLNode* ptr_first)
+SLLNode* sll_delete_start(SLLNode* first)
 {
-    SLLNode *to_be_freed = ptr_first;
+    SLLNode *to_be_freed = first;
 
     // Second Node is the new first Node
-    (ptr_first) = (ptr_first)->next;
+    first = first->next;
     // Free memory occupied by original first Node
     free(to_be_freed);
 
-    return ptr_first;
+    return first;
 }
 
-SLLNode* sll_delete_end(SLLNode* ptr_first)
+SLLNode* sll_delete_end(SLLNode* first)
 {
     // Do nothing if list is empty
-    if ((ptr_first) == NULL)
-        return ptr_first;
+    if (first == NULL)
+        return first;
 
     SLLNode* prev_node = NULL;
     SLLNode* curr_node = NULL;
 
     // Traverse till last Node.
-    for (curr_node = (ptr_first); curr_node->next != NULL; prev_node =
+    for (curr_node = first; curr_node->next != NULL; prev_node =
             curr_node, curr_node = curr_node->next)
         ;
 
@@ -166,20 +166,20 @@ SLLNode* sll_delete_end(SLLNode* ptr_first)
     // Free Last node
     free(curr_node);
 
-    return ptr_first;
+    return first;
 }
 
-SLLNode* sll_delete_at(SLLNode* ptr_first, int pos)
+SLLNode* sll_delete_at(SLLNode* first, int pos)
 {
     // Do nothing if list is empty
-    if ((ptr_first) == NULL)
-        return ptr_first;
+    if (first == NULL)
+        return first;
 
     SLLNode* prev_node = NULL;
     SLLNode* curr_node = NULL;
 
     // Traverse till desired Node by decrementing pos till it reaches 1
-    for (curr_node = (ptr_first); curr_node != NULL && pos > 1; prev_node =
+    for (curr_node = first; curr_node != NULL && pos > 1; prev_node =
             curr_node, curr_node = curr_node->next, --pos)
         ;
 
@@ -187,20 +187,20 @@ SLLNode* sll_delete_at(SLLNode* ptr_first, int pos)
     if (pos < 1 || curr_node == NULL)
     {
         printf("Invalid Position!\n");
-        return ptr_first;
+        return first;
     }
     else
     {
         // If pos is 1
         if (prev_node == NULL)
-            (ptr_first) = curr_node->next;
+            first = curr_node->next;
         else
             prev_node->next = curr_node->next;
         free(curr_node);
-        return ptr_first;
+        return first;
     }
 
-    return ptr_first;
+    return first;
 }
 
 SLLNode* sll_reverse_list(SLLNode* prev, SLLNode* curr)

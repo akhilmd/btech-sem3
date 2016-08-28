@@ -12,43 +12,7 @@ DLLNode* dll_create_from_array(DLL_ELEM_TYPE* ar, int n)
     return first_node;
 }
 
-DLLNode* dll_insert_start(DLLNode* head_ref, DLL_ELEM_TYPE element)
-{
-    DLLNode* temp = (DLLNode*) malloc(sizeof(DLLNode));
-    temp->data = element;
-    temp->prev = NULL;
-    temp->next = NULL;
-    if (head_ref == NULL)
-        return temp;
-    else
-    {
-        temp->next = head_ref;
-        head_ref->prev = temp;
-        head_ref = temp;
-        return head_ref;
-    }
-}
-
-void dll_display_list(char* msg, DLLNode* q)
-{
-    printf("%s", msg);
-    if (q == NULL)
-        printf("Empty List\n");
-    else
-    {
-        printf("NULL<->");
-
-        while (q != NULL)
-        {
-            printf(DLL_ELEM_TYPE_FORMAT "<->", q->data);
-            q = q->next;
-        }
-
-        printf("NULL\n");
-    }
-}
-
-DLLNode* dll_insert_end(DLLNode* head_ref, DLL_ELEM_TYPE element)
+DLLNode* dll_insert_end(DLLNode* first, DLL_ELEM_TYPE element)
 {
     DLLNode* temp = (DLLNode*) malloc(sizeof(DLLNode));
     DLLNode* q = NULL;
@@ -56,96 +20,48 @@ DLLNode* dll_insert_end(DLLNode* head_ref, DLL_ELEM_TYPE element)
     temp->next = NULL;
     temp->prev = NULL;
 
-    if (head_ref == NULL)
-        head_ref = temp;
+    if (first == NULL)
+        first = temp;
     else
     {
-        q = head_ref;
+        q = first;
         while (q->next != NULL)
             q = q->next;
         q->next = temp;
         temp->prev = q;
     }
 
-    return head_ref;
+    return first;
 }
 
-DLLNode* dll_delete_element(DLLNode* head_ref, DLL_ELEM_TYPE element)
+DLLNode* dll_insert_start(DLLNode* first, DLL_ELEM_TYPE element)
 {
-    DLLNode* q = head_ref;
-
-    while ((q != NULL) && (q->data != element))
-        q = q->next;
-
-    if (q != NULL)
-    {
-        // if only one node in the list
-        if ((q->prev == NULL) && (q->next == NULL))
-            head_ref = NULL; //make first NULL
-        else if (q->prev == NULL) //first node
-        {
-            head_ref = q->next;
-            (head_ref)->prev = NULL;
-        }
-        else if (q->next == NULL) //last node
-            q->prev->next = NULL;
-        else //middle
-        {
-            q->prev->next = q->next;
-            q->next->prev = q->prev;
-        }
-        free(q);
-    }
-    else
-        printf("NODE not found\n");
-
-    return head_ref;
-}
-
-DLLNode* dll_delete_start(DLLNode* head_ref)
-{
-    if (head_ref == NULL)
-        printf("Underflow!!");
+    DLLNode* temp = (DLLNode*) malloc(sizeof(DLLNode));
+    temp->data = element;
+    temp->prev = NULL;
+    temp->next = NULL;
+    if (first == NULL)
+        return temp;
     else
     {
-        DLLNode* temp = head_ref;
-        head_ref = head_ref->next;
-        free(temp);
-        head_ref->prev = NULL;
+        temp->next = first;
+        first->prev = temp;
+        first = temp;
+        return first;
     }
-
-    return head_ref;
 }
 
-DLLNode* dll_delete_end(DLLNode* head_ref)
-{
-    if (head_ref == NULL)
-        printf("Underflow!!");
-    else
-    {
-        DLLNode* q = head_ref;
-        while (q->next->next != NULL)
-            q = q->next;
-
-        DLLNode* temp = q->next;
-        q->next = NULL;
-        free(temp);
-    }
-
-    return head_ref;
-}
-
-DLLNode* dll_insert_at(DLLNode* head_ref, DLL_ELEM_TYPE element, int pos)
+DLLNode* dll_insert_at(DLLNode* first, DLL_ELEM_TYPE element, int pos)
 {
     int i = 0;
-    DLLNode* q = head_ref;
+    DLLNode* q = first;
     DLLNode* temp = (DLLNode*) malloc(sizeof(DLLNode));
     temp->data = element;
     temp->next = NULL;
     temp->prev = NULL;
 
     if (pos == 1)
-        dll_insert_start(head_ref, element);
+        dll_insert_start(first, element);
     else
     {
         for (i = 1; (q->next != NULL) && (i < pos); ++i)
@@ -167,13 +83,117 @@ DLLNode* dll_insert_at(DLLNode* head_ref, DLL_ELEM_TYPE element, int pos)
             printf("Invalid position");
     }
 
-    return head_ref;
+    return first;
 }
 
-DLLNode* dll_reverse_list(DLLNode* head_ref)
+DLLNode* dll_delete_element(DLLNode* first, DLL_ELEM_TYPE element)
+{
+    DLLNode* q = first;
+
+    while ((q != NULL) && (q->data != element))
+        q = q->next;
+
+    if (q != NULL)
+    {
+        // if only one node in the list
+        if ((q->prev == NULL) && (q->next == NULL))
+            first = NULL; //make first NULL
+        else if (q->prev == NULL) //first node
+        {
+            first = q->next;
+            (first)->prev = NULL;
+        }
+        else if (q->next == NULL) //last node
+            q->prev->next = NULL;
+        else //middle
+        {
+            q->prev->next = q->next;
+            q->next->prev = q->prev;
+        }
+        free(q);
+    }
+    else
+        printf("NODE not found\n");
+
+    return first;
+}
+
+DLLNode* dll_delete_end(DLLNode* first)
+{
+    if (first == NULL)
+        printf("Underflow!!");
+    else
+    {
+        DLLNode* q = first;
+        while (q->next->next != NULL)
+            q = q->next;
+
+        DLLNode* temp = q->next;
+        q->next = NULL;
+        free(temp);
+    }
+
+    return first;
+}
+
+DLLNode* dll_delete_start(DLLNode* first)
+{
+    if (first == NULL)
+        printf("Underflow!!");
+    else
+    {
+        DLLNode* temp = first;
+        first = first->next;
+        free(temp);
+        first->prev = NULL;
+    }
+
+    return first;
+}
+
+DLLNode* dll_delete_at(DLLNode* first, int pos)
+{
+    // Do nothing if list is empty
+    if (first == NULL)
+        return first;
+
+    DLLNode* curr_node = NULL;
+
+    // Traverse till desired Node by decrementing pos till it reaches 1
+    for (curr_node = first; curr_node != NULL && pos > 1;
+            curr_node = curr_node->next, --pos)
+        ;
+
+    // curr_node can only be NULL if pos is bigger than list length
+    if (pos < 1 || curr_node == NULL)
+    {
+        printf("Invalid Position!\n");
+        return first;
+    }
+    else
+    {
+        // If pos is 1
+        if (curr_node->prev == NULL)
+        {
+            first = curr_node->next;
+            first->prev = NULL;
+        }
+        else
+        {
+            curr_node->prev->next = curr_node->next;
+            curr_node->next->prev = curr_node->prev;
+        }
+        free(curr_node);
+        return first;
+    }
+
+    return first;
+}
+
+DLLNode* dll_reverse_list(DLLNode* first)
 {
     DLLNode* temp = NULL;
-    DLLNode* current = head_ref;
+    DLLNode* current = first;
 
     while (current != NULL)
     {
@@ -184,7 +204,26 @@ DLLNode* dll_reverse_list(DLLNode* head_ref)
     }
 
     if (temp != NULL)
-        head_ref = temp->prev;
+        first = temp->prev;
 
-    return head_ref;
+    return first;
+}
+
+void dll_display_list(char* msg, DLLNode* q)
+{
+    printf("%s", msg);
+    if (q == NULL)
+        printf("Empty List\n");
+    else
+    {
+        printf("NULL<->");
+
+        while (q != NULL)
+        {
+            printf(DLL_ELEM_TYPE_FORMAT "<->", q->data);
+            q = q->next;
+        }
+
+        printf("NULL\n");
+    }
 }

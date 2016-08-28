@@ -183,7 +183,7 @@ void test_doubly_ll()
     printf("\tTesting Doubly Linked List Implementation...\n\n");
 
     int values1[] =
-    { 101, 100, 99, 99, 98, 97, 96, 95 };
+    { 101, 100, 99, 9999, 98, 97, 96, 95 };
 
     DLLNode* list1 = dll_create_from_array(values1,
             sizeof(values1) / sizeof(DLL_ELEM_TYPE));
@@ -217,6 +217,11 @@ void test_doubly_ll()
 
     printf("\nDeleting end of list1.\n");
     list1 = dll_delete_end(list1);
+    dll_display_list("list1: ", list1);
+
+    int pos2 = 4;
+    printf("\nDeleting element in position %d of list1.\n", pos2);
+    list1 = dll_delete_at(list1, pos2);
     dll_display_list("list1: ", list1);
 
     printf("\nReversing list1.\n");
