@@ -1,5 +1,5 @@
-test:	obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o
-	gcc -o test obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o
+test:	obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o obj/doubly_linked_list.o
+	gcc -o test obj/test.o obj/singly_linked_list.o obj/recursion.o obj/pointers_arrays.o obj/doubly_linked_list.o
 
 obj/test.o:	test.c
 	gcc -o obj/test.o -c test.c
@@ -12,3 +12,6 @@ obj/recursion.o:	src/recursion.c
 
 obj/pointers_arrays.o:	src/pointers_arrays.c
 	gcc -o obj/pointers_arrays.o -c src/pointers_arrays.c
+
+obj/doubly_linked_list.o:	src/doubly_linked_list.c
+	gcc -o obj/doubly_linked_list.o -c src/doubly_linked_list.c
