@@ -7,7 +7,7 @@ typedef int DLL_ELEM_TYPE;
 
 typedef struct DLLNode
 {
-    DLL_ELEM_TYPE data;
+    DLL_ELEM_TYPE value;
     struct DLLNode* next;
     struct DLLNode* prev;
 } DLLNode;
@@ -21,5 +21,4 @@ DLLNode* dll_delete_end(DLLNode*);
 DLLNode* dll_delete_start(DLLNode*);
 DLLNode* dll_delete_at(DLLNode*, int);
 DLLNode* dll_reverse_list(DLLNode*);
-DLLNode* dll_concatenate_lists(DLLNode*, DLLNode*);
 void dll_display_list(char*, DLLNode*);

@@ -88,8 +88,10 @@ SLLNode* sll_insert_at(SLLNode* first, SLL_ELEM_TYPE in_val, int pos)
             curr_node, curr_node = curr_node->next, --pos)
         ;
 
+    printf("pos=%d\n", pos);
+
     // pos is greater than number of nodes or less than 1
-    if (curr_node == NULL || pos < 1)
+    if (pos!=1)
     {
         printf("Invalid Position!\n");
         return first;

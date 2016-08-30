@@ -200,8 +200,8 @@ void test_doubly_ll()
     list1 = dll_insert_end(list1, v2);
     dll_display_list("list1: ", list1);
 
-    DLL_ELEM_TYPE v3 = 0;
-    int pos1 = 3;
+    DLL_ELEM_TYPE v3 = -10001;
+    int pos1 = 11;
     printf("\nInserting %d in position %d of list1.\n", v3, pos1);
     list1 = dll_insert_at(list1, v3, pos1);
     dll_display_list("list1: ", list1);
@@ -219,7 +219,7 @@ void test_doubly_ll()
     list1 = dll_delete_end(list1);
     dll_display_list("list1: ", list1);
 
-    int pos2 = 4;
+    int pos2 = 5;
     printf("\nDeleting element in position %d of list1.\n", pos2);
     list1 = dll_delete_at(list1, pos2);
     dll_display_list("list1: ", list1);
