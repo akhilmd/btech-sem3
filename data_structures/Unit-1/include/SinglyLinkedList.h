@@ -5,20 +5,20 @@
 
 typedef int SLL_ELEM_TYPE;
 
-typedef struct Node
+typedef struct SLLNode
 {
     SLL_ELEM_TYPE value;
-    struct Node* next;
-} Node;
+    struct SLLNode* next;
+} SLLNode;
 
-Node* sll_create_from_array(SLL_ELEM_TYPE*, int);
-Node* sll_insert_end(Node*, SLL_ELEM_TYPE);
-Node* sll_insert_start(Node*, SLL_ELEM_TYPE);
-Node* sll_insert_at(Node*, SLL_ELEM_TYPE, int);
-Node* sll_delete_element(Node*, SLL_ELEM_TYPE);
-Node* sll_delete_end(Node*);
-Node* sll_delete_start(Node*);
-Node* sll_delete_at(Node*, int);
-Node* sll_reverse_list(Node*, Node*);
-Node* sll_concatenate_lists(Node*, Node*);
-int sll_display_list(char*, Node*);
+SLLNode* sll_create_from_array(SLL_ELEM_TYPE*, int);
+SLLNode* sll_insert_end(SLLNode*, SLL_ELEM_TYPE);
+SLLNode* sll_insert_start(SLLNode*, SLL_ELEM_TYPE);
+SLLNode* sll_insert_at(SLLNode*, SLL_ELEM_TYPE, int);
+SLLNode* sll_delete_element(SLLNode*, SLL_ELEM_TYPE);
+SLLNode* sll_delete_end(SLLNode*);
+SLLNode* sll_delete_start(SLLNode*);
+SLLNode* sll_delete_at(SLLNode*, int);
+SLLNode* sll_reverse_list(SLLNode*, SLLNode*);
+SLLNode* sll_concatenate_lists(SLLNode*, SLLNode*);
+int sll_display_list(char*, SLLNode*);

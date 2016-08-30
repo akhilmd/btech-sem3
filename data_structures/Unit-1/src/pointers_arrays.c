@@ -94,12 +94,12 @@ void __array6()
      *a= value of the first element of the array
 
      2. p = address of first element of array of p
-     * p = value of the first element of p 
+     * p = value of the first element of p
      **p= 0
 
      3. ptr : value of ptr i.e p
      *ptr = *p = a
-     **ptr = **p = *a = 
+     **ptr = **p = *a =
 
      */
 }
@@ -173,8 +173,8 @@ void __ptr()
     printf("__ptr:\n");
 
     int x = 10;
-    int *y;
-    int **z;
+    int* y;
+    int** z;
 
     y = &x;
     z = &y;
@@ -200,10 +200,10 @@ void __disp1(int* a, int n)
 void __ptr1()
 {
     printf("__ptr1:\n");
-    
+
     int a[5] =
     { 1, 2, 3, 4, 5 };
-    
+
     __disp1(a, 5);
 }
 
@@ -221,21 +221,19 @@ void __disp2(int* a, int n)
 
     for (i = 0; i < n; i++)
         printf(" %d", a[i]);
-
 }
 
 void __ptr2()
 {
     printf("__ptr2:\n");
-    
+
     int a[5] =
     { 1, 2, 3, 4, 5 };
-    
+
     __disp2(&a[0], 5);
-    
+
     printf("\n");
 }
-
 
 void test_pa()
 {
