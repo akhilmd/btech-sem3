@@ -1,0 +1,29 @@
+Directory Structure:
+	data_structures/
+		include/
+			SinglyLinkedList.h
+		obj/
+			singly_linked_list.o
+			test.o
+		src/
+			singly_linked_list.c
+		makefile
+		test
+		test.c
+		todo
+
+[] Implement quick, merge, selection, bubble, insertion sort using callbacks with corresponding test calls.
+[] Implement Circular Lists using arrays and linked list.
+[] Implement Stack using arrays and linked list.
+[DONE] Make seperate array and 2D array pointer example and corresponding test calls.
+[DONE] Make seperate files singly linked list operations and corresponding test calls.
+
+Instructions for adding new thing:
+1. All related functions must be in a .c file in src/
+2. All related definitions, constants and prototypes must be in a .h file in includes/
+3. All generated .o files must be in obj/
+4. Add your new files to be linked in the makefile
+5. Test by running the folling in the terminal and checking if all files are generated.
+	$ make
+	$ ./test
+6. Note that after implementing something, the corresponding test function must be written in test.c and called in it.

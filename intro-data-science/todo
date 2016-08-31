@@ -1,0 +1,14 @@
+rigorous documentation including author details and minor explaination of the programs
+
+CITE ANY EXTERNAL DATASETS.
+
+[DONE] boxplot for sw,sl,pw,pl data from iris dataseet in one graph
+[DONE] scatter plot with different colours for each flower for sw vs sl and pw vs pl
+
+extra:
+boxplot for box.csv
+scatter plots for scatter1.csv and scatter2.csv
+
+line graph for line.csv
+
+put % in the pie chart

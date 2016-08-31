@@ -1,0 +1,17 @@
+Convert to the following structure:
+
+ds-lab/
+    lab-1/
+    lab-2/
+    lab-3/
+    .
+    .
+    .
+
+wt-lab/
+    lab-1/
+    lab-2/
+    lab-3/
+    .
+    .
+    .
