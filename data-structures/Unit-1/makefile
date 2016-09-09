@@ -4,8 +4,8 @@ CC=gcc
 ODIR=obj
 SRCDIR=src
 
-test:	$(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o
-	$(CC) -o test $(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o
+test:	$(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o $(ODIR)/2d_arrays.o
+	$(CC) -o test $(ODIR)/test.o $(ODIR)/singly_linked_list.o $(ODIR)/recursion.o $(ODIR)/pointers_arrays.o $(ODIR)/doubly_linked_list.o $(ODIR)/2d_arrays.o
 
 $(ODIR)/test.o:	test.c
 	$(CC) -o $(ODIR)/test.o -c test.c
@@ -21,6 +21,9 @@ $(ODIR)/pointers_arrays.o:	$(SRCDIR)/pointers_arrays.c $(IDIR)/PointersArrays.h
 
 $(ODIR)/doubly_linked_list.o:	$(SRCDIR)/doubly_linked_list.c $(IDIR)/DoublyLinkedList.h
 	$(CC) -o $(ODIR)/doubly_linked_list.o -c $(SRCDIR)/doubly_linked_list.c
+
+$(ODIR)/2d_arrays.o:	$(SRCDIR)/2d_arrays.c $(IDIR)/2DArrays.h
+	$(CC) -o $(ODIR)/2d_arrays.o -c $(SRCDIR)/2d_arrays.c
 
 clean:
 	rm -f $(ODIR)/*.o

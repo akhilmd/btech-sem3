@@ -2,6 +2,7 @@
 #include "include/Recursion.h"
 #include "include/PointersArrays.h"
 #include "include/DoublyLinkedList.h"
+#include "include/2DArrays.h"
 
 #include <string.h>
 
@@ -9,6 +10,7 @@
 #define SLL 's'
 #define PA 'p'
 #define DLL 'd'
+#define TDA 't'
 
 int check_for_help(char**, int);
 void run_all_tests();
@@ -19,6 +21,7 @@ void test_rec();
 void test_singly_ll();
 void test_pointers_arrays();
 void test_doubly_ll();
+void test_two_d_arrays();
 
 int main(int argl, char** argv)
 {
@@ -57,6 +60,8 @@ void run_all_tests()
     test_pointers_arrays();
     printf("\n\n");
     test_doubly_ll();
+    printf("\n\n");
+    test_two_d_arrays();
 }
 
 void run_tests(char** args, int no_of_args)
@@ -72,6 +77,8 @@ void run_tests(char** args, int no_of_args)
             test_pointers_arrays();
         else if (args[i][1] == DLL)
             test_doubly_ll();
+        else if (args[i][1] == TDA)
+            test_two_d_arrays();
 
         if (i != no_of_args - 1)
             printf("\n\n");
@@ -87,6 +94,7 @@ void print_help()
     printf("-%c  :  Test Singly Linked List Implementation.\n", SLL);
     printf("-%c  :  Test Pointers and Arrays.\n", PA);
     printf("-%c  :  Test Doubly Linked List Implementation.\n", DLL);
+    printf("-%c  :  Test Two Dimentional Arrays.\n", TDA);
 }
 
 void test_singly_ll()
@@ -227,4 +235,10 @@ void test_doubly_ll()
     printf("\nReversing list1.\n");
     list1 = dll_reverse_list(list1);
     dll_display_list("list1: ", list1);
+}
+
+void test_two_d_arrays()
+{
+    printf("\tTesting Two Dimentional Arrays...\n\n");
+    test_2da();
 }
