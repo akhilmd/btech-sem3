@@ -7,7 +7,7 @@ void __array2()
     printf("__array2:\n");
 
     int a[] =
-    { 2, 4, 6, 8, 10 };
+        { 2, 4, 6, 8, 10 };
 
     int i = 0;
 
@@ -30,7 +30,7 @@ void __array3()
     printf("__array3:\n");
 
     int a[5] =
-    { 2, 4, 6, 8, 10 };
+        { 2, 4, 6, 8, 10 };
 
     int i, b = 5;
 
@@ -46,7 +46,7 @@ void __array4()
     printf("__array4:\n");
 
     int arr[] =
-    { 0, 1, 2, 3, 4 };
+        { 0, 1, 2, 3, 4 };
 
     int* ptr;
 
@@ -62,7 +62,7 @@ void __array5()
     printf("__array5:\n");
 
     int arr[] =
-    { 0, 1, 2, 3, 4 };
+        { 0, 1, 2, 3, 4 };
 
     int* ptr;
     //prints 4,3,2,1,0
@@ -78,10 +78,10 @@ void __array6()
     printf("__array6:\n");
 
     int a[] =
-    { 0, 1, 2, 3, 4 };
+        { 0, 1, 2, 3, 4 };
 
     int* p[] =
-    { a, a + 1, a + 2, a + 3, a + 4 };
+        { a, a + 1, a + 2, a + 3, a + 4 };
 
     int** ptr = p;
 
@@ -109,10 +109,10 @@ void __array7()
     printf("__array7:\n");
 
     long a[] =
-    { 0, 1, 2, 3, 4 };
+        { 0, 1, 2, 3, 4 };
 
     long* p[] =
-    { a, a + 1, a + 2, a + 3, a + 4 };
+        { a, a + 1, a + 2, a + 3, a + 4 };
 
     long** ptr = p;
 
@@ -202,7 +202,7 @@ void __ptr1()
     printf("__ptr1:\n");
 
     int a[5] =
-    { 1, 2, 3, 4, 5 };
+        { 1, 2, 3, 4, 5 };
 
     __disp1(a, 5);
 }
@@ -228,7 +228,7 @@ void __ptr2()
     printf("__ptr2:\n");
 
     int a[5] =
-    { 1, 2, 3, 4, 5 };
+        { 1, 2, 3, 4, 5 };
 
     __disp2(&a[0], 5);
 

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 void __array2();
 void __array3();
 void __array4();
